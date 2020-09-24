@@ -1,5 +1,5 @@
 {
-  "name": "Open Components",
+  "name": "open_components",
   "version": "1.0.0",
   "description": "Collection of components.",
   "main": "index.js",
@@ -7,8 +7,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Zebedee Lewis <zebedeeslewis@gmail.com>",
   "license": "MIT",
   "devDependencies": {
