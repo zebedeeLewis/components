@@ -67,7 +67,7 @@ const switch_price = (parent) => {
 
 
 
-const run_desktop_page_loaded_animation = (gsap, parent) => {
+const run_content_loaded_animation = (gsap, parent) => {
   const package_left_class = 'package--left'
   const package_right_class = 'package--right'
 
@@ -77,7 +77,8 @@ const run_desktop_page_loaded_animation = (gsap, parent) => {
   gsap
     .timeline()
     .from( packageLeft
-         , { duration: 1
+         , { stagger: 2
+           , duration: 2
            , x: '100%'
            }
          )
@@ -85,7 +86,8 @@ const run_desktop_page_loaded_animation = (gsap, parent) => {
   gsap
     .timeline()
     .from( packageRight
-         , { duration: 1
+         , { stagger: 2
+           , duration: 2
            , x: '-100%'
            }
          )
@@ -93,7 +95,27 @@ const run_desktop_page_loaded_animation = (gsap, parent) => {
 
 
 
-const main = (document, gsap) => {
+const run_load_animation = (gsap, document, loadingAnimation) => {
+  const loading_class = 'loading'
+  const loading = document.querySelector(`.${loading_class}`)
+
+  gsap
+    .timeline()
+    .to( loading
+       , { duration: .8
+         , opacity: 0
+         , onComplete: ()=> {
+             loading.style.display = 'none'
+             loadingAnimation.kill()
+           }
+         }
+       )
+
+}
+
+
+
+const main = (window, document, gsap, loadingAnimation) => {
   document.addEventListener
     ( 'DOMContentLoaded'
     , () => {
@@ -105,7 +127,7 @@ const main = (document, gsap) => {
           container.querySelector(toggle_checkbox_selector)
 
         switch_price(container)
-        run_desktop_page_loaded_animation(gsap, container)
+        run_content_loaded_animation(gsap, container)
 
         toggleCheckbox.addEventListener
           ( 'change'
@@ -113,7 +135,12 @@ const main = (document, gsap) => {
           )
       }
     )
+
+  window.addEventListener
+    ( 'load'
+    , () => run_load_animation(gsap, document, loadingAnimation)
+    )
 }
 
 
-main(document, gsap)
+main(window, document, gsap, loadingTimeline)

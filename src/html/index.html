@@ -11,6 +11,28 @@
     rel="stylesheet"
   >
   <link rel="stylesheet" href="assets/css/normalize.css">
+  <style>
+  .loading {
+    background-color : white;
+    position         : fixed;
+    width            : 100vw;
+    height           : 100vh;
+    top              : 0;
+    opacity          : 1;
+    z-index          : 2;
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    justify-content  : center;
+  }
+
+  .loading__bar {
+    background       : linear-gradient(45deg,#a3a8f0,#696fdd);
+    width            : 80px;
+    height           : 12px;
+    margin-bottom    : 4px;
+  }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -88,9 +110,30 @@
       </div>
     </div>
   </div>
+  <div class="loading">
+    <div class="loading__bar"></div>
+    <div class="loading__bar"></div>
+    <div class="loading__bar"></div>
+    <div class="loading__bar"></div>
+    <div class="loading__bar"></div>
+    <div class="loading__bar"></div>
+  </div>
 
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
 ></script>
+<script>
+  const loadingTimeline = gsap.timeline()
+
+  loadingTimeline
+    .to( '.loading__bar'
+       , { rotationY : '360deg'
+         , yoyo      : true
+         , repeat    : -1
+         , delay     : .1
+         , stagger   : .3
+         }
+       )
+</script>
 </body>
 </html>
