@@ -60,7 +60,7 @@ module.exports =
   , output :
     { path       : paths.build
     , filename   : path.join('js', '[name].js')
-    , publicPath : '/'
+    , publicPath : '/components'
     }
   
   , plugins:

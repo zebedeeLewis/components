@@ -1,0 +1,44 @@
+@use "spacing" as spacing;
+@use "color" as color;
+
+
+$font-size: 15px !default;
+$line-height: spacing.$b5 !default;
+
+
+@mixin button {
+  display         : inline-block;
+  font-size       : $font-size;
+  line-height     : $line-height;
+  outline         : none;
+  border          : none;
+  text-decoration : none;
+  text-transform  : uppercase;
+  padding         : spacing.$b3;
+}
+
+
+
+@mixin button--rounded {
+  border-radius   : 6px;
+}
+
+
+
+@mixin button--block {
+  display         : block;
+  width           : 100%;
+}
+
+
+@mixin button--primary {
+  background      : color.$primary;
+  color           : color.$on-primary;
+}
+
+
+
+@mixin button--primary-inverse {
+  background      : color.$on-primary;
+  color           : color.$primary-2;
+}

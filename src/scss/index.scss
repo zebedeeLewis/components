@@ -1,5 +1,243 @@
-$var: "red";
+@use "spacing" as spacing;
+@use "typography";
+@use "button" as button;
+@use "color" as color;
+@use "toggle" with
+  ( $background   : color.$primary
+  , $switch-color : color.$on-primary
+  );
+
+
+/* Contents
+ * 1. Variables
+ * 2. General Styles
+ * 3. Container
+ * 4. Payment Scheme
+ * 5. Package Display 
+ * 6. Package
+ */
+
+
+
+/* 1. Variables */
+$package-max-width: 327px;
+$package-min-height: 453px;
+$font-color: color.$dark-grey-blue;
+$large-breakpoint: 860px;
+
+
+
+/* 2. General Styles */
+:root {
+  color: $font-color;
+}
+
+
 
 body {
-  background-color: $var;
+  background-color : color.$very-light-grey-blue;
+}
+
+
+
+div {
+  box-sizing: border-box;
+}
+
+
+
+ul {
+  list-style-type : none;
+  margin-top      : 0;
+  margin-bottom   : 0;
+  padding-left    : 0;
+}
+
+
+
+.display-none {
+  display : none !important;
+}
+
+
+
+.display-initial {
+  display : initial;
+}
+
+
+
+/* 3. Container */
+.container {
+  padding-top         : spacing.$b12;
+  padding-bottom      : spacing.$b18;
+  background-image    : url(/assets/images/bg-top.svg);
+  background-repeat   : no-repeat;
+  background-position : top -38px right -195px;
+
+
+  @media(min-width: $large-breakpoint) {
+    padding-top         : spacing.$b14;
+    background-position : top 0 right 0;
+  }
+}
+
+
+
+/* 4. Payment Scheme */
+.payment-scheme {
+  text-align       : center;
+  display          : flex;
+  align-items      : center;
+  justify-content  : center;
+  width            : 100%;
+  /*padding-top      : spacing.$b6;*/
+  padding-top      : 22px;
+  padding-bottom   : spacing.$b12;
+  text-transform   : capitalize;
+  color            : color.$light-grey-blue;
+}
+
+
+
+/* 5. Package Display */
+.package-display {
+  @media (min-width: $large-breakpoint) {
+    display         : flex;
+    justify-content : center;
+    align-items     : flex-start;
+  }
+}
+
+
+
+/* 6. Package */
+.payment-scheme__annually {
+  order: 1;
+}
+
+
+
+.payment-scheme__monthly {
+  order: 3;
+}
+
+
+
+.payment-scheme__selector {
+  margin : 0px spacing.$b6;
+  order  : 2;
+}
+
+
+
+@mixin package {
+  max-width        : $package-max-width;
+  margin-top       : spacing.$b8;
+  margin-left      : auto;
+  margin-right     : auto;
+  border-radius    : 10px;
+  min-height       : $package-min-height;
+  padding-top      : spacing.$b9;
+  padding-left     : 29px;
+  padding-right    : 29px;
+  box-shadow       : 0 3px 6px rgba(0,0,0,0.16)
+                   , 0 3px 6px rgba(0,0,0,0.23);
+
+  @media (min-width: $large-breakpoint) {
+    margin-left    : 0;
+    margin-right   : 0;
+    margin-top     : spacing.$b10;
+    max-width      : unset;
+    flex           : 0 1 352px;
+  }
+}
+
+
+
+.package {
+  @include         package;
+  background-color : white;
+}
+
+
+
+.package--primary {
+  background       : color.$primary;
+  color            : color.$on-primary;
+
+  @media (min-width: $large-breakpoint) {
+    margin-top     : spacing.$b4;
+    padding-top    : 58px;
+    padding-bottom : 56px;
+  }
+}
+
+
+
+.package-type {
+  text-align       : center;
+  font-size        : 18px;
+  line-height      : spacing.$b5;
+}
+
+
+
+.dollar-sign {
+  font-size         : 37px;
+  line-height       : spacing.$b10;
+  vertical-align    : middle;
+  letter-spacing    : 0;
+  margin-right      : 8px;
+}
+
+
+
+.package-price {
+  font-size         : 73px;
+  line-height       : spacing.$b19;
+  padding-top       : spacing.$b6;
+  text-align        : center;
+  display           : flex;
+  justify-content   : center;
+  align-items       : center;
+  letter-spacing    : -3px;
+}
+
+
+
+.package-details {
+  border-top-style  : solid;
+  border-width      : 1px;
+  border-color      : color.$light-grey-blue;
+  margin-top        : 30px;
+}
+
+
+.package-details__item {
+  padding             : spacing.$b4 0;
+  border-bottom-style : solid;
+  border-width        : 1px;
+  border-color        : color.$light-grey-blue;
+  text-align          : center;
+}
+
+
+
+.learn-more {
+  margin-top          : 32px;
+  @include            button.button;
+  @include            button.button--rounded;
+  @include            button.button--block;
+  @include            button.button--primary;
+}
+
+
+
+.learn-more--primary {
+  margin-top          : 32px;
+  @include            button.button;
+  @include            button.button--rounded;
+  @include            button.button--block;
+  @include            button.button--primary-inverse;
 }
