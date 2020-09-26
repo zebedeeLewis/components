@@ -67,7 +67,33 @@ const switch_price = (parent) => {
 
 
 
-const main = (document) => {
+const run_desktop_page_loaded_animation = (gsap, parent) => {
+  const package_left_class = 'package--left'
+  const package_right_class = 'package--right'
+
+  const packageLeft = parent.querySelector(`.${package_left_class}`)
+  const packageRight = parent.querySelector(`.${package_right_class}`)
+
+  gsap
+    .timeline()
+    .from( packageLeft
+         , { duration: 1
+           , x: '100%'
+           }
+         )
+
+  gsap
+    .timeline()
+    .from( packageRight
+         , { duration: 1
+           , x: '-100%'
+           }
+         )
+}
+
+
+
+const main = (document, gsap) => {
   document.addEventListener
     ( 'DOMContentLoaded'
     , () => {
@@ -79,6 +105,7 @@ const main = (document) => {
           container.querySelector(toggle_checkbox_selector)
 
         switch_price(container)
+        run_desktop_page_loaded_animation(gsap, container)
 
         toggleCheckbox.addEventListener
           ( 'change'
@@ -89,4 +116,4 @@ const main = (document) => {
 }
 
 
-main(document)
+main(document, gsap)

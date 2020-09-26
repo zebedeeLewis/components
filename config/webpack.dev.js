@@ -6,7 +6,12 @@ const common = require('./webpack.common.js')
 
 module.exports =
   merge( common
-       , { mode                 : 'development'
+       , { output :
+           { path       : paths.build
+           , filename   : path.join('js', '[name].js')
+           , publicPath : '/'
+           }
+         , mode                 : 'development'
          , devtool              : 'inline-source-map'
          , devServer            :
            { contentBase        : paths.build

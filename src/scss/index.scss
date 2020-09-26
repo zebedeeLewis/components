@@ -165,12 +165,20 @@ ul {
 .package--primary {
   background       : color.$primary;
   color            : color.$on-primary;
+  z-index          : 2;
 
   @media (min-width: $large-breakpoint) {
     margin-top     : spacing.$b4;
     padding-top    : 58px;
     padding-bottom : 56px;
   }
+}
+
+
+
+.package--left,
+.package--primaty {
+  z-index : 1;
 }
 
 

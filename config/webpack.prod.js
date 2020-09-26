@@ -8,7 +8,12 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports =
   merge( common
-       , { mode    : 'production'
+       , { output :
+           { path       : paths.build
+           , filename   : path.join('js', '[name].js')
+           , publicPath : '/components'
+           }
+         , mode    : 'production'
          , devtool : false
          , plugins :
            [ new MiniCssExtractPlugin(

@@ -57,12 +57,6 @@ const source_descriptors =
 
 module.exports =
   { entry  : entries_from_source_descriptors(source_descriptors)
-  , output :
-    { path       : paths.build
-    , filename   : path.join('js', '[name].js')
-    , publicPath : '/components'
-    }
-  
   , plugins:
     /* clean build folders and unused assets when rebuilding. */
     [ new CleanWebpackPlugin()
