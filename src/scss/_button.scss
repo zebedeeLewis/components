@@ -1,5 +1,6 @@
 @use "spacing" as spacing;
-@use "color" as color;
+@use "color" as colors;
+@use "sass:color" as color;
 
 
 $font-size: 15px !default;
@@ -15,6 +16,7 @@ $line-height: spacing.$b5 !default;
   text-decoration : none;
   text-transform  : uppercase;
   padding         : spacing.$b3;
+  cursor          : pointer;
 }
 
 
@@ -32,13 +34,29 @@ $line-height: spacing.$b5 !default;
 
 
 @mixin button--primary {
-  background      : color.$primary;
-  color           : color.$on-primary;
+  background      : colors.$primary;
+  color           : colors.$on-primary;
+
+  &:hover {
+    background    : color.scale(colors.$primary-1, $lightness: -10%);
+  }
+
+  &:active {
+    background    : color.scale(colors.$primary-1, $lightness: -20%);
+  }
 }
 
 
 
 @mixin button--primary-inverse {
-  background      : color.$on-primary;
-  color           : color.$primary-2;
+  background      : colors.$on-primary;
+  color           : colors.$primary-2;
+
+  &:hover {
+    background    : color.scale(colors.$on-primary, $lightness: -10%);
+  }
+
+  &:active {
+    background    : color.scale(colors.$on-primary, $lightness: -20%);
+  }
 }

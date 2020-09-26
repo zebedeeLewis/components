@@ -102,9 +102,9 @@ const run_load_animation = (gsap, document, loadingAnimation) => {
   gsap
     .timeline()
     .to( loading
-       , { duration: .8
-         , opacity: 0
-         , onComplete: ()=> {
+       , { duration   : .8
+         , opacity    : 0
+         , onComplete : ()=> {
              loading.style.display = 'none'
              loadingAnimation.kill()
            }
